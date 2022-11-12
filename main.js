@@ -10,13 +10,13 @@ const reset = document.querySelector('.reset')
 
 const body = document.body
 
-function chageColors () {
-    red.addEventListener('click', () => {
-        setTimeout(() => {
-            body.style.backgroundColor = "red"
-        },1000)
-        console.log(red);
-    })
+// function chageColors () {
+//     // red.addEventListener('click', () => {
+//     //     setTimeout(() => {
+//     //         body.style.backgroundColor = "red"
+//     //     },1000)
+//         console.log(red);
+//     })
     yellow.addEventListener('click', () => {
         setTimeout(() => {
             body.style.backgroundColor = "yellow"
@@ -59,51 +59,65 @@ function chageColors () {
         },500)
         console.log(reset);
     })
-}
-chageColors()
+// }
+
+
 const colors = ['blue','red','yellow', 'green','purple', 'pink', 'orange'];
-const refs = {
-    body: document.body,
-    sequence: document.querySelector('button[data-action = "sequence"]'),
-    stop: document.querySelector('button[data-action = "stop"]'),
+let currentColor = 0;
 
+setInterval(setColor, 1000);
+
+function setColor(color) {
+  document.body.style.background = colors[currentColor];
+  currentColor++;
+  if (currentColor >= colors.length) {
+    currentColor = 0;
+  }
 }
 
+// chageColors()
+// const colors = ['blue','red','yellow', 'green','purple', 'pink', 'orange'];
+// const refs = {
+//     body: document.body,
+//     sequence: document.querySelector('button[data-action = "sequence"]'),
+//     stop: document.querySelector('button[data-action = "stop"]'),
 
-const INTERVAL_DELAY = 1000;
-
-let intervalId = null;
-
-
-refs.sequence.addEventListener('click', changeColor);
-
-refs.stop.addEventListener('click', stop);
-
-
-const randomIntegerFromInterval = (min, max) => {
-
-  return Math.floor(Math.random() * (max - min + 1) + min);
-
-};
+// }
 
 
-function changeColor() {
+// const INTERVAL_DELAY = 1000;
 
-    intervalId = setInterval(() => {
-
-        refs.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
-
-    }, INTERVAL_DELAY);
-
-    refs.sequence.disabled = true;
-
-};
+// let intervalId = null;
 
 
-function stop() {
+// refs.sequence.addEventListener('click', changeColor);
 
-    clearInterval(intervalId);
+// refs.stop.addEventListener('click', stop);
 
-    refs.sequence.disabled = false;
 
-}
+// const randomIntegerFromInterval = (min, max) => {
+
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+
+// };
+
+
+// function changeColor() {
+
+//     intervalId = setInterval(() => {
+
+//         refs.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
+//     }, INTERVAL_DELAY);
+
+//     refs.sequence.disabled = true;
+
+// };
+
+
+// function stop() {
+
+//     clearInterval(intervalId);
+
+//     refs.sequence.disabled = false;
+
+// }
